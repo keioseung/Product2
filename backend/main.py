@@ -21,7 +21,7 @@ app.add_middleware(
 # 헬스체크 엔드포인트
 @app.get("/")
 async def root():
-    return {"message": "AI Mastery Hub Backend is running", "status": "healthy", "version": "1.0.0"}
+    return {"message": "Finance Mastery Hub Backend is running", "status": "healthy", "version": "1.0.0"}
 
 @app.get("/health")
 async def health_check():
