@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from 'next/navigation'
-import { FaChartLine, FaArrowRight, FaCoins, FaTrendingUp, FaShieldAlt, FaStar, FaCheckCircle } from 'react-icons/fa'
+import { FaChartLine, FaArrowRight, FaCoins, FaChartBar, FaShieldAlt, FaStar, FaCheckCircle } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 
 export default function IntroPage() {
@@ -90,7 +90,7 @@ export default function IntroPage() {
           <FaCoins />
         </div>
         <div className="absolute bottom-1/3 left-1/5 text-teal-500/20 text-4xl animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '4s' }}>
-          <FaTrendingUp />
+          <FaChartBar />
         </div>
       </div>
 
@@ -178,7 +178,7 @@ export default function IntroPage() {
                 bgColor: "bg-emerald-500/10"
               },
               {
-                icon: FaTrendingUp,
+                icon: FaChartBar,
                 title: "맞춤형 퀴즈 시스템",
                 desc: "개인의 학습 수준에 맞춰 난이도가 조절되는 퀴즈로 실력을 체크하세요. AI가 분석한 취약점을 보완할 수 있는 맞춤 문제를 제공합니다.",
                 color: "from-teal-500 to-cyan-500",

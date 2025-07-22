@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { FaChartLine, FaStar, FaUser, FaLock, FaEnvelope, FaEye, FaEyeSlash, FaShieldAlt, FaTrendingUp, FaCoins } from 'react-icons/fa'
+import { FaChartLine, FaStar, FaUser, FaLock, FaEnvelope, FaEye, FaEyeSlash, FaShieldAlt, FaCoins, FaChartBar } from 'react-icons/fa'
 
 export default function AuthPage() {
   const router = useRouter()
@@ -83,7 +83,7 @@ export default function AuthPage() {
       <div className="absolute inset-0">
         {/* 그리드 패턴 */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
-        
+      
         {/* 움직이는 도형들 */}
         <div className="absolute top-1/4 left-1/6 w-32 h-32 bg-emerald-500/10 rounded-full blur-xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/6 w-48 h-48 bg-teal-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
@@ -93,9 +93,9 @@ export default function AuthPage() {
         <div className="absolute top-1/5 right-1/5 text-emerald-500/20 text-4xl animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3s' }}>
           <FaCoins />
         </div>
-        <div className="absolute bottom-1/4 left-1/6 text-teal-500/20 text-3xl animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '4s' }}>
-          <FaTrendingUp />
-        </div>
+                 <div className="absolute bottom-1/4 left-1/6 text-teal-500/20 text-3xl animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '4s' }}>
+           <FaChartBar />
+         </div>
         <div className="absolute top-1/3 left-1/4 text-green-500/20 text-2xl animate-bounce" style={{ animationDelay: '2.5s', animationDuration: '5s' }}>
           <FaShieldAlt />
         </div>
@@ -106,47 +106,47 @@ export default function AuthPage() {
         <div className="bg-black/40 backdrop-blur-2xl rounded-3xl p-8 shadow-2xl border border-white/10 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-teal-500/5" />
           <div className="relative z-10">
-            {/* 로고 및 제목 */}
-            <div className="text-center mb-8">
-              <div className="flex justify-center mb-6">
-                <div className="relative">
+          {/* 로고 및 제목 */}
+          <div className="text-center mb-8">
+            <div className="flex justify-center mb-6">
+              <div className="relative">
                   <div className="w-20 h-20 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl">
                     <FaChartLine className="text-3xl text-white" />
-                  </div>
+                </div>
                   <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-                    <FaStar className="text-xs text-white" />
+                  <FaStar className="text-xs text-white" />
                   </div>
                 </div>
               </div>
               <h1 className="text-3xl font-black bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent mb-2">
                 Finance Mastery Hub
-              </h1>
+            </h1>
               <p className="text-emerald-300 font-medium">투자 전문가로 성장하는 여정을 시작하세요</p>
-            </div>
+          </div>
 
-            {/* 탭 메뉴 */}
+              {/* 탭 메뉴 */}
             <div className="flex mb-8 bg-white/5 rounded-2xl p-1">
-              <button
+                <button
                 className={`flex-1 py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-300 ${
-                  tab === 'login' 
+                    tab === 'login' 
                     ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg' 
                     : 'text-gray-400 hover:text-white hover:bg-white/10'
-                }`}
-                onClick={() => { setTab('login'); setError('') }}
-              >
-                로그인
-              </button>
-              <button
+                  }`}
+                  onClick={() => { setTab('login'); setError('') }}
+                >
+                  로그인
+                </button>
+                <button
                 className={`flex-1 py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-300 ${
-                  tab === 'register' 
+                    tab === 'register' 
                     ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg' 
                     : 'text-gray-400 hover:text-white hover:bg-white/10'
-                }`}
-                onClick={() => { setTab('register'); setError('') }}
-              >
-                회원가입
-              </button>
-            </div>
+                  }`}
+                  onClick={() => { setTab('register'); setError('') }}
+                >
+                  회원가입
+                </button>
+              </div>
 
             {/* 오류 메시지 */}
             {error && (
@@ -155,13 +155,13 @@ export default function AuthPage() {
               </div>
             )}
 
-            {/* 폼 */}
-            {tab === 'login' ? (
-              <form onSubmit={handleLogin} className="space-y-6">
-                <div>
+              {/* 폼 */}
+              {tab === 'login' ? (
+                <form onSubmit={handleLogin} className="space-y-6">
+                  <div>
                   <label className="block text-gray-300 text-sm font-medium mb-2">
                     사용자명
-                  </label>
+                    </label>
                   <div className="relative">
                     <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
@@ -176,45 +176,45 @@ export default function AuthPage() {
                   </div>
                 </div>
 
-                <div>
+                  <div>
                   <label className="block text-gray-300 text-sm font-medium mb-2">
-                    비밀번호
-                  </label>
-                  <div className="relative">
+                      비밀번호
+                    </label>
+                    <div className="relative">
                     <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                    <input
+                      <input
                       type={showPassword ? 'text' : 'password'}
                       name="password"
                       value={formData.password}
                       onChange={handleInputChange}
                       className="w-full pl-10 pr-12 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 transition-all"
-                      placeholder="비밀번호를 입력하세요"
+                        placeholder="비밀번호를 입력하세요"
                       required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-300"
-                    >
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </button>
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </button>
+                    </div>
                   </div>
-                </div>
 
-                <button
-                  type="submit"
+                  <button 
+                    type="submit" 
                   disabled={isLoading}
                   className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
-                >
+                  >
                   {isLoading ? '로그인 중...' : '로그인'}
-                </button>
-              </form>
-            ) : (
-              <form onSubmit={handleRegister} className="space-y-6">
-                <div>
+                  </button>
+                </form>
+              ) : (
+                <form onSubmit={handleRegister} className="space-y-6">
+                  <div>
                   <label className="block text-gray-300 text-sm font-medium mb-2">
                     사용자명
-                  </label>
+                    </label>
                   <div className="relative">
                     <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
@@ -247,40 +247,40 @@ export default function AuthPage() {
                   </div>
                 </div>
 
-                <div>
+                  <div>
                   <label className="block text-gray-300 text-sm font-medium mb-2">
-                    비밀번호
-                  </label>
-                  <div className="relative">
+                      비밀번호
+                    </label>
+                    <div className="relative">
                     <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                    <input
+                      <input
                       type={showPassword ? 'text' : 'password'}
                       name="password"
                       value={formData.password}
                       onChange={handleInputChange}
                       className="w-full pl-10 pr-12 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 transition-all"
-                      placeholder="비밀번호를 입력하세요"
+                        placeholder="비밀번호를 입력하세요"
                       required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-300"
-                    >
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </button>
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </button>
+                    </div>
                   </div>
-                </div>
 
-                <button
-                  type="submit"
+                  <button 
+                    type="submit" 
                   disabled={isLoading}
                   className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
-                >
+                  >
                   {isLoading ? '가입 중...' : '회원가입'}
-                </button>
-              </form>
-            )}
+                  </button>
+                </form>
+              )}
 
             {/* 추가 정보 */}
             <div className="mt-8 text-center">
@@ -293,10 +293,10 @@ export default function AuthPage() {
                   <FaStar />
                   <span>무료 시작</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <FaTrendingUp />
-                  <span>전문가 교육</span>
-                </div>
+                                 <div className="flex items-center gap-1">
+                   <FaChartBar />
+                   <span>전문가 교육</span>
+                 </div>
               </div>
             </div>
           </div>
