@@ -61,7 +61,7 @@ export default function AdminAIInfoPage() {
   const [bulkTermsText, setBulkTermsText] = useState('')
   const [showBulkInput, setShowBulkInput] = useState<number | null>(null)
 
-  // 서버에서 날짜별 AI 정보 목록 불러오기
+  // 서버에서 날짜별 금융 정보 목록 불러오기
   const { data: dates = [], refetch: refetchDates } = useQuery({
     queryKey: ['ai-info-dates'],
     queryFn: async () => {
@@ -70,7 +70,7 @@ export default function AdminAIInfoPage() {
     }
   })
 
-  // 선택한 날짜의 AI 정보 불러오기
+  // 선택한 날짜의 금융 정보 불러오기
   const { data: aiInfos = [], refetch: refetchAIInfo, isFetching } = useQuery({
     queryKey: ['ai-info', date],
     queryFn: async () => {
@@ -99,7 +99,7 @@ export default function AdminAIInfoPage() {
     }
   })
 
-  // AI 정보 등록/수정
+  // 금융 정보 등록/수정
   const addOrUpdateMutation = useMutation({
     mutationFn: async () => {
       return aiInfoAPI.add({ date, infos: inputs })
@@ -121,7 +121,7 @@ export default function AdminAIInfoPage() {
     }
   })
 
-  // AI 정보 삭제
+  // 금융 정보 삭제
   const deleteMutation = useMutation({
     mutationFn: async (date: string) => {
       return aiInfoAPI.delete(date)
@@ -530,9 +530,9 @@ export default function AdminAIInfoPage() {
           <div>
             <h1 className="text-3xl font-bold text-white flex items-center gap-3">
               <FaBrain className="text-blue-400" />
-              AI 정보 관리 (DB 저장)
+              금융 정보 관리 (DB 저장)
             </h1>
-            <p className="text-white/70 mt-1">AI 정보, 프롬프트, 기반 내용을 데이터베이스에 저장하여 관리합니다</p>
+            <p className="text-white/70 mt-1">금융 정보, 프롬프트, 기반 내용을 데이터베이스에 저장하여 관리합니다</p>
           </div>
         </div>
 
@@ -555,11 +555,11 @@ export default function AdminAIInfoPage() {
             </div>
           )}
 
-          {/* AI 정보 관리 */}
+          {/* 금융 정보 관리 */}
           <section className="bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 p-6">
             <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
               <FaBrain className="text-blue-400" />
-              AI 정보 관리
+              금융 정보 관리
             </h2>
             
             <form onSubmit={handleSubmit} className="mb-8 bg-white/5 rounded-xl p-6 border border-white/10 flex flex-col gap-6">
@@ -739,7 +739,7 @@ export default function AdminAIInfoPage() {
             </form>
             
             <div className="grid gap-4">
-              {dates.length === 0 && <div className="text-white/50 text-center">등록된 AI 정보가 없습니다.</div>}
+              {dates.length === 0 && <div className="text-white/50 text-center">등록된 금융 정보가 없습니다.</div>}
               {dates.map(dateItem => (
                 <div key={dateItem} className="bg-white/5 rounded-xl p-6 border border-white/10">
                   <div className="flex items-center justify-between mb-4">

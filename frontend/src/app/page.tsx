@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from 'next/navigation'
-import { FaRobot, FaArrowRight, FaBrain, FaRocket, FaChartLine } from 'react-icons/fa'
+import { FaChartLine, FaArrowRight, FaCoins, FaTrendingUp, FaShieldAlt, FaStar, FaCheckCircle } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 
 export default function IntroPage() {
@@ -9,14 +9,14 @@ export default function IntroPage() {
   const [typedText, setTypedText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTyping, setIsTyping] = useState(true)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [scrollY, setScrollY] = useState(0)
   
-  const fullText = "AI Mastery Hub"
+  const fullText = "Finance Mastery Hub"
   const taglines = [
-    "매일 새로운 AI 정보로 지식을 쌓아보세요",
-    "실전 퀴즈로 학습한 내용을 점검하세요",
-    "개인별 학습 진행률을 체계적으로 관리하세요",
-    "AI 세계의 핵심 개념을 쉽게 이해하세요"
+    "스마트한 투자, 확실한 수익",
+    "금융 지식으로 미래를 설계하세요",
+    "전문가 수준의 금융 교육 플랫폼",
+    "성공 투자의 첫 걸음을 시작하세요"
   ]
   const [currentTagline, setCurrentTagline] = useState(0)
 
@@ -26,7 +26,7 @@ export default function IntroPage() {
       const timeout = setTimeout(() => {
         setTypedText(fullText.slice(0, currentIndex + 1))
         setCurrentIndex(currentIndex + 1)
-      }, 150)
+      }, 100)
       return () => clearTimeout(timeout)
     } else {
       setIsTyping(false)
@@ -43,299 +43,258 @@ export default function IntroPage() {
     }
   }, [isTyping, taglines.length])
 
-  // 마우스 위치 추적
+  // 스크롤 이벤트
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-      {/* 고급스러운 배경 효과 */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,119,198,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(120,119,255,0.15),transparent_50%)]" />
-      
-      {/* 움직이는 그라데이션 배경 */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20 animate-gradient-shift" />
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/10 via-transparent to-purple-900/10 animate-gradient-float" />
-      
-      {/* 인터랙티브 마우스 효과 */}
-      <div 
-        className="absolute w-96 h-96 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl pointer-events-none transition-all duration-1000 ease-out"
-        style={{
-          left: mousePosition.x - 192,
-          top: mousePosition.y - 192,
-          transform: 'translate(-50%, -50%)'
-        }}
-      />
-      
-      {/* 움직이는 파티클 효과 */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/30 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 4}s`
-            }}
-          />
-        ))}
-      </div>
-
-      {/* 빛나는 효과 */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/15 to-purple-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-      <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-gradient-to-r from-pink-500/10 to-yellow-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-
-      {/* 움직이는 선 효과 */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-px h-32 bg-gradient-to-b from-transparent via-purple-500/30 to-transparent animate-slide-down"
-            style={{
-              left: `${20 + i * 15}%`,
-              animationDelay: `${i * 0.5}s`,
-              animationDuration: '4s'
-            }}
-          />
-        ))}
-      </div>
-
-      {/* 메인 컨텐츠 */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-8">
-        {/* 헤더 섹션 */}
-        <div className="text-center mb-16 md:mb-20">
-          {/* 로고 및 제목 */}
-          <div className="flex flex-col items-center gap-8 mb-12">
-            <div className="relative">
-              <div className="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl animate-glow">
-                <FaRobot className="text-4xl md:text-5xl text-white" />
-              </div>
-              <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse" />
-              {/* 빛나는 효과 */}
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-3xl blur-xl animate-pulse" />
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-emerald-900 relative overflow-hidden">
+      {/* 헤더 */}
+      <header className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-xl border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
+              <FaChartLine className="text-white text-lg" />
             </div>
-            <div>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent drop-shadow-2xl tracking-tight leading-tight mb-6 animate-text-glow">
-                {typedText}
-                {isTyping && <span className="animate-blink">|</span>}
-              </h1>
-              <div className="h-10 md:h-12">
-                <p className="text-xl md:text-2xl lg:text-3xl text-purple-300 font-medium animate-fade-in-out">
-                  {taglines[currentTagline]}
-                </p>
-              </div>
-            </div>
+            <span className="text-white font-bold text-xl">Finance Mastery</span>
           </div>
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="#features" className="text-gray-300 hover:text-emerald-400 transition-colors">기능</a>
+            <a href="#benefits" className="text-gray-300 hover:text-emerald-400 transition-colors">혜택</a>
+            <a href="#testimonials" className="text-gray-300 hover:text-emerald-400 transition-colors">후기</a>
+            <button 
+              onClick={() => router.push('/auth')}
+              className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-600 transition-all"
+            >
+              시작하기
+            </button>
+          </nav>
+        </div>
+      </header>
 
-          {/* 메인 텍스트 */}
-          <div className="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                매일 업데이트되는 AI 정보
+      {/* 배경 요소들 */}
+      <div className="absolute inset-0">
+        {/* 그리드 패턴 */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
+        
+        {/* 움직이는 도형들 */}
+        <div className="absolute top-20 left-20 w-32 h-32 bg-emerald-500/10 rounded-full blur-xl animate-pulse" />
+        <div className="absolute top-40 right-32 w-48 h-48 bg-teal-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-40 left-1/4 w-24 h-24 bg-green-500/10 rounded-full blur-lg animate-pulse" style={{ animationDelay: '2s' }} />
+        
+        {/* 플로팅 아이콘들 */}
+        <div className="absolute top-1/3 right-1/4 text-emerald-500/20 text-6xl animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3s' }}>
+          <FaCoins />
+        </div>
+        <div className="absolute bottom-1/3 left-1/5 text-teal-500/20 text-4xl animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '4s' }}>
+          <FaTrendingUp />
+        </div>
+      </div>
+
+      {/* 메인 히어로 섹션 */}
+      <section className="relative z-10 pt-32 pb-20 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          {/* 메인 제목 */}
+          <div className="mb-8">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
+              <FaStar className="text-emerald-400 text-sm" />
+              <span className="text-emerald-300 text-sm font-medium">전문가들이 선택한 #1 금융 교육 플랫폼</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent">
+                {typedText}
+                {isTyping && <span className="animate-pulse">|</span>}
               </span>
-              <br />
-              <span className="text-white/90">
-                관련 용어를 학습
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                실전 퀴즈로 지식을 점검
-              </span>
-            </h2>
-            <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-              최신 AI 트렌드와 핵심 개념을 체계적으로 학습하고,<br />
-              실전 문제를 통해 확실한 이해를 확인하세요
+            </h1>
+            
+            <div className="h-8 mb-8">
+              <p className="text-xl md:text-2xl text-emerald-300 font-medium">
+                {taglines[currentTagline]}
+              </p>
+            </div>
+            
+            <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
+              체계적인 금융 교육과 실전 퀴즈로 투자 전문가로 성장하세요.<br />
+              매일 업데이트되는 최신 금융 정보와 맞춤형 학습 시스템을 경험해보세요.
             </p>
           </div>
 
-          {/* CTA 버튼 */}
+          {/* CTA 버튼들 */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <button
+              onClick={() => router.push('/auth')}
+              className="group bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105 flex items-center gap-3"
+            >
+              무료로 시작하기
+              <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </button>
+            
+            <button className="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold text-lg backdrop-blur-sm hover:bg-white/20 transition-all duration-300">
+              데모 보기
+            </button>
+          </div>
+
+          {/* 신뢰도 지표 */}
+          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-emerald-400 mb-2">10K+</div>
+              <div className="text-gray-400 text-sm">활성 사용자</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-emerald-400 mb-2">95%</div>
+              <div className="text-gray-400 text-sm">만족도</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-emerald-400 mb-2">4.9★</div>
+              <div className="text-gray-400 text-sm">평점</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 기능 섹션 */}
+      <section id="features" className="relative z-10 py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              전문가 수준의 금융 교육
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              체계적인 커리큘럼과 실전 중심의 학습으로 투자 성공의 길을 안내합니다
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: FaCoins,
+                title: "실전 투자 교육",
+                desc: "주식, 채권, 펀드 등 다양한 투자 상품에 대한 깊이 있는 분석과 전략을 학습하세요. 실제 시장 데이터를 기반으로 한 케이스 스터디를 제공합니다.",
+                color: "from-emerald-500 to-teal-500",
+                bgColor: "bg-emerald-500/10"
+              },
+              {
+                icon: FaTrendingUp,
+                title: "맞춤형 퀴즈 시스템",
+                desc: "개인의 학습 수준에 맞춰 난이도가 조절되는 퀴즈로 실력을 체크하세요. AI가 분석한 취약점을 보완할 수 있는 맞춤 문제를 제공합니다.",
+                color: "from-teal-500 to-cyan-500",
+                bgColor: "bg-teal-500/10"
+              },
+              {
+                icon: FaShieldAlt,
+                title: "리스크 관리 교육",
+                desc: "성공적인 투자의 핵심인 리스크 관리 전략을 체계적으로 학습하세요. 포트폴리오 분산과 헤지 전략까지 전문가 노하우를 전수합니다.",
+                color: "from-cyan-500 to-blue-500",
+                bgColor: "bg-cyan-500/10"
+              }
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className={`${feature.bgColor} border border-white/10 rounded-3xl p-8 backdrop-blur-sm hover:bg-white/5 transition-all duration-500 hover:scale-105 group relative overflow-hidden`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10">
+                  <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <feature.icon className="text-2xl text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {feature.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 혜택 섹션 */}
+      <section id="benefits" className="relative z-10 py-20 px-4 bg-black/20">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+                투자 성공률을<br />
+                <span className="text-emerald-400">3배 높이는</span><br />
+                체계적 학습
+              </h2>
+              
+              <div className="space-y-6">
+                {[
+                  "매일 업데이트되는 최신 시장 분석",
+                  "개인별 맞춤 학습 커리큘럼",
+                  "전문가 인사이트와 투자 전략",
+                  "실시간 포트폴리오 분석 도구"
+                ].map((benefit, index) => (
+                  <div key={index} className="flex items-center gap-4">
+                    <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <FaCheckCircle className="text-white text-sm" />
+                    </div>
+                    <span className="text-gray-300 text-lg">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <button
+                onClick={() => router.push('/auth')}
+                className="mt-8 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300"
+              >
+                지금 시작하기
+              </button>
+            </div>
+            
+            <div className="relative">
+              <div className="bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-3xl p-8 backdrop-blur-sm border border-white/10">
+                <div className="text-center">
+                  <div className="text-6xl font-black text-emerald-400 mb-4">₩</div>
+                  <h3 className="text-2xl font-bold text-white mb-4">월 평균 수익률</h3>
+                  <div className="text-4xl font-bold text-emerald-400 mb-2">+12.5%</div>
+                  <p className="text-gray-300">사용자 평균 (최근 6개월)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 푸터 CTA */}
+      <section className="relative z-10 py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            금융 전문가로의 여정을<br />
+            지금 시작하세요
+          </h2>
+          <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
+            무료 계정으로 시작해서 프리미엄 콘텐츠까지, 단계별로 성장하는 투자 여정을 경험해보세요.
+          </p>
           <button
-            className="group px-12 md:px-16 py-5 md:py-6 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white text-xl md:text-2xl rounded-2xl font-bold shadow-2xl hover:from-purple-700 hover:via-pink-700 hover:to-purple-700 transition-all flex items-center gap-4 mx-auto animate-fade-in hover:scale-105 active:scale-95 relative overflow-hidden animate-button-glow"
             onClick={() => router.push('/auth')}
+            className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-12 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105"
           >
-            <span className="relative z-10">지금 시작하기</span>
-            <FaArrowRight className="group-hover:translate-x-2 transition-transform duration-200 relative z-10" />
-            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            무료로 시작하기
           </button>
         </div>
+      </section>
 
-        {/* 기능 카드들 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full max-w-5xl mb-20">
-          {[
-            { 
-              icon: FaBrain, 
-              title: "AI 정보 학습", 
-              desc: "매일 새로운 AI 정보를 제공합니다. 각 정보에는 관련 용어들이 포함되어 있어 AI 개념을 체계적으로 학습할 수 있습니다.", 
-              color: "from-blue-500 to-cyan-500"
-            },
-            { 
-              icon: FaRocket, 
-              title: "용어 퀴즈", 
-              desc: "학습한 AI 정보의 관련 용어들을 퀴즈로 점검합니다. 다양한 난이도의 문제로 지식 이해도를 확인하고 실력을 향상시켜보세요.", 
-              color: "from-purple-500 to-pink-500"
-            },
-            { 
-              icon: FaChartLine, 
-              title: "학습 진행률", 
-              desc: "개인별 학습 진행 상황을 상세한 통계로 추적합니다. 일별, 주별, 월별 학습 현황을 확인하고 목표를 설정해보세요.", 
-              color: "from-green-500 to-emerald-500"
-            }
-          ].map((feature, index) => (
-            <div
-              key={index}
-              className="group bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 hover:scale-105 hover:bg-white/10 relative overflow-hidden animate-card-float"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 animate-icon-glow`}>
-                  <feature.icon className="text-white text-2xl" />
-                </div>
-                <h3 className="text-white font-bold text-2xl mb-4">{feature.title}</h3>
-                <p className="text-gray-300 text-base leading-relaxed">{feature.desc}</p>
-              </div>
+      {/* 푸터 */}
+      <footer className="relative z-10 border-t border-white/10 bg-black/20 backdrop-blur-sm py-12 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
+              <FaChartLine className="text-white text-sm" />
             </div>
-          ))}
+            <span className="text-white font-bold text-lg">Finance Mastery Hub</span>
+          </div>
+          <p className="text-gray-400 mb-4">스마트한 투자로 더 나은 미래를 만들어가세요</p>
+          <p className="text-gray-500 text-sm">© 2024 Finance Mastery Hub. All rights reserved.</p>
         </div>
-
-        {/* 하단 통계 */}
-        <div className="grid grid-cols-3 gap-8 md:gap-12 w-full max-w-4xl">
-          {[
-            { label: "매일 새로운", value: "AI 정보", icon: FaBrain },
-            { label: "핵심 개념", value: "관련 용어", icon: FaRocket },
-            { label: "지식 점검", value: "실전 퀴즈", icon: FaChartLine }
-          ].map((stat, index) => (
-            <div key={index} className="text-center animate-stat-fade-in" style={{ animationDelay: `${index * 0.3}s` }}>
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl flex items-center justify-center mx-auto mb-3 animate-stat-glow">
-                <stat.icon className="text-purple-400 text-xl md:text-2xl" />
-              </div>
-              <div className="text-xl md:text-2xl font-bold text-white mb-1">{stat.value}</div>
-              <div className="text-white/60 text-sm">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <style jsx global>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
-          50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
-        }
-        .animate-bounce-slow {
-          animation: bounce-slow 3s infinite;
-        }
-        @keyframes blink {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
-        }
-        .animate-blink {
-          animation: blink 1s infinite;
-        }
-        @keyframes fade-in-out {
-          0%, 100% { opacity: 0; transform: translateY(10px); }
-          20%, 80% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-out {
-          animation: fade-in-out 3s ease-in-out infinite;
-        }
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: none; }
-        }
-        .animate-fade-in {
-          animation: fade-in 1.5s cubic-bezier(0.22,1,0.36,1) both;
-        }
-        @keyframes gradient-shift {
-          0%, 100% { transform: translateX(0) translateY(0); }
-          25% { transform: translateX(10px) translateY(-10px); }
-          50% { transform: translateX(-5px) translateY(5px); }
-          75% { transform: translateX(5px) translateY(-5px); }
-        }
-        .animate-gradient-shift {
-          animation: gradient-shift 8s ease-in-out infinite;
-        }
-        @keyframes gradient-float {
-          0%, 100% { transform: translateY(0) scale(1); }
-          50% { transform: translateY(-20px) scale(1.1); }
-        }
-        .animate-gradient-float {
-          animation: gradient-float 6s ease-in-out infinite;
-        }
-        @keyframes slide-down {
-          0% { transform: translateY(-100vh); opacity: 0; }
-          50% { opacity: 1; }
-          100% { transform: translateY(100vh); opacity: 0; }
-        }
-        .animate-slide-down {
-          animation: slide-down 4s linear infinite;
-        }
-        @keyframes glow {
-          0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.3); }
-          50% { box-shadow: 0 0 40px rgba(147, 51, 234, 0.6); }
-        }
-        .animate-glow {
-          animation: glow 3s ease-in-out infinite;
-        }
-        @keyframes text-glow {
-          0%, 100% { filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.3)); }
-          50% { filter: drop-shadow(0 0 20px rgba(147, 51, 234, 0.6)); }
-        }
-        .animate-text-glow {
-          animation: text-glow 4s ease-in-out infinite;
-        }
-        @keyframes button-glow {
-          0%, 100% { box-shadow: 0 0 30px rgba(147, 51, 234, 0.2); }
-          50% { box-shadow: 0 0 50px rgba(147, 51, 234, 0.4); }
-        }
-        .animate-button-glow {
-          animation: button-glow 3s ease-in-out infinite;
-        }
-        @keyframes card-float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        .animate-card-float {
-          animation: card-float 4s ease-in-out infinite;
-        }
-        @keyframes icon-glow {
-          0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
-          50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
-        }
-        .animate-icon-glow {
-          animation: icon-glow 2s ease-in-out infinite;
-        }
-        @keyframes stat-fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-stat-fade-in {
-          animation: stat-fade-in 1s ease-out both;
-        }
-        @keyframes stat-glow {
-          0%, 100% { box-shadow: 0 0 15px rgba(147, 51, 234, 0.2); }
-          50% { box-shadow: 0 0 25px rgba(147, 51, 234, 0.4); }
-        }
-        .animate-stat-glow {
-          animation: stat-glow 3s ease-in-out infinite;
-        }
-      `}</style>
+      </footer>
     </div>
   )
 } 

@@ -139,8 +139,8 @@ function ProgressSection({ sessionId, selectedDate, onDateChange }: ProgressSect
     return acc
   }, []).sort((a: PeriodData, b: PeriodData) => new Date(a.date).getTime() - new Date(b.date).getTime())
   
-  // 최대값을 고정값으로 설정 (AI 정보: 3, 용어: 60, 퀴즈: 100)
-  const maxAI = 3;
+  // 최대값을 고정값으로 설정 (금융 정보: 3, 용어: 60, 퀴즈: 100)
+  const maxFinance = 3;
   const maxTerms = 60;
   const maxQuiz = 100;
 
@@ -321,7 +321,7 @@ function ProgressSection({ sessionId, selectedDate, onDateChange }: ProgressSect
 
       {/* 전체 통계 카드 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* AI 정보 통계 */}
+        {/* 금융 정보 통계 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -331,7 +331,7 @@ function ProgressSection({ sessionId, selectedDate, onDateChange }: ProgressSect
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-2">
               <BookOpen className="w-5 h-5 text-blue-400" />
-              <h3 className="text-white font-semibold">AI 정보 학습</h3>
+              <h3 className="text-white font-semibold">금융 정보 학습</h3>
             </div>
             <TrendingUp className="w-4 h-4 text-blue-400" />
           </div>
@@ -437,15 +437,15 @@ function ProgressSection({ sessionId, selectedDate, onDateChange }: ProgressSect
         <div className="glass rounded-2xl p-6">
           {uniqueChartData.length > 0 ? (
             <div className="space-y-8">
-              {/* AI 정보 추이 */}
+              {/* 금융 정보 추이 */}
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="text-white/80 font-medium">AI 정보 학습</span>
+                    <span className="text-white/80 font-medium">금융 정보 학습</span>
                   </div>
                   <span className="text-white/60 text-sm">
-                    최대: {maxAI}개
+                    최대: {maxFinance}개
                   </span>
                 </div>
                 <div className="overflow-x-auto pt-16">
@@ -460,15 +460,15 @@ function ProgressSection({ sessionId, selectedDate, onDateChange }: ProgressSect
                     <div className="flex items-end gap-2 h-32">
                       {uniqueChartData.map((data, index) => {
                         const barMaxHeight = 128;
-                        const aiHeight = Math.max((data.ai_info / maxAI) * barMaxHeight, data.ai_info > 0 ? 4 : 0);
-                        const isFullAI = data.ai_info === maxAI;
-                        const percent = Math.round((data.ai_info / maxAI) * 100);
+                                            const aiHeight = Math.max((data.ai_info / maxFinance) * barMaxHeight, data.ai_info > 0 ? 4 : 0);
+                    const isFullFinance = data.ai_info === maxFinance;
+                    const percent = Math.round((data.ai_info / maxFinance) * 100);
                         return (
                           <div key={index} className="flex flex-col items-center w-8">
                             <div className="relative w-full">
                               <div
                                 className={
-                                  isFullAI
+                                  isFullFinance
                                     ? "bg-gradient-to-t from-blue-700 to-blue-400 shadow-lg animate-pulse rounded-t-sm transition-all duration-500"
                                     : "bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-sm transition-all duration-500 hover:from-blue-400 hover:to-blue-300"
                                 }

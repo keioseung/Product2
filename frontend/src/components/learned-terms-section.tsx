@@ -212,7 +212,7 @@ function LearnedTermsSection({ sessionId }: LearnedTermsSectionProps) {
           <BookOpen className="w-16 h-16 mx-auto mb-4 opacity-60" />
           <h3 className="text-xl font-semibold mb-2">학습한 용어가 없습니다</h3>
           <p className="text-white/70 mb-4">
-            AI 정보를 학습하고 용어를 등록한 후 여기서 확인해보세요!
+                          금융 정보를 학습하고 용어를 등록한 후 여기서 확인해보세요!
           </p>
           <div className="text-sm text-white/50">
             총 학습 가능한 용어: 0개

@@ -5,15 +5,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --primary: #6366f1;
-  --secondary: #a5b4fc;
-  --accent: #f472b6;
-  --bg-gradient: linear-gradient(135deg, #6366f1 0%, #a5b4fc 100%);
+  --primary: #059669;
+  --secondary: #34d399;
+  --accent: #10b981;
+  --bg-gradient: linear-gradient(135deg, #059669 0%, #34d399 100%);
   --bg-dark: #18181b;
   --bg-light: #f8fafc;
   --card-bg: rgba(255,255,255,0.08);
   --card-blur: blur(12px);
-  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --shadow: 0 8px 32px 0 rgba(5, 150, 105, 0.15);
   --border: 1px solid rgba(255,255,255,0.18);
   --radius: 18px;
 }
@@ -49,7 +49,7 @@ input, textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(99,102,241,0.18);
+  background: rgba(5,150,105,0.18);
   border-radius: 4px;
 }
 
@@ -76,7 +76,7 @@ input, textarea {
 
 /* 그라데이션 텍스트 */
 .gradient-text {
-  background: linear-gradient(90deg, #6366f1 0%, #f472b6 100%);
+  background: linear-gradient(90deg, #059669 0%, #10b981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -98,7 +98,7 @@ input, textarea {
 
 .card-hover:hover {
   transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 16px 40px rgba(99,102,241,0.12);
+  box-shadow: 0 16px 40px rgba(5,150,105,0.12);
 }
 
 .btn {
@@ -109,15 +109,15 @@ input, textarea {
   border-radius: var(--radius);
   font-weight: 600;
   font-size: 1rem;
-  background: linear-gradient(90deg, #6366f1 0%, #f472b6 100%);
+  background: linear-gradient(90deg, #059669 0%, #10b981 100%);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+  box-shadow: 0 2px 8px rgba(5,150,105,0.08);
   transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
   border: none;
   cursor: pointer;
 }
 .btn:hover {
-  background: linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%);
-  box-shadow: 0 4px 16px rgba(99,102,241,0.16);
+  background: linear-gradient(90deg, #059669 0%, #34d399 100%);
+  box-shadow: 0 4px 16px rgba(5,150,105,0.16);
   transform: translateY(-2px) scale(1.04);
 } 

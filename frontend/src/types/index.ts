@@ -1,19 +1,23 @@
-// AI Info Types
+// Finance Info Types
 export interface TermItem {
   term: string
   description: string
 }
 
-export interface AIInfoItem {
+export interface FinanceInfoItem {
   title: string
   content: string
   terms?: TermItem[]
 }
 
-export interface AIInfoCreate {
+export interface FinanceInfoCreate {
   date: string
-  infos: AIInfoItem[]
+  infos: FinanceInfoItem[]
 }
+
+// Backward compatibility - AI 타입들을 Finance 타입으로 alias
+export type AIInfoItem = FinanceInfoItem
+export type AIInfoCreate = FinanceInfoCreate
 
 // Quiz Types
 export interface Quiz {
@@ -58,13 +62,16 @@ export interface UserStats {
   last_learned_date: string | null
   quiz_score: number
   achievements: string[]
-  today_ai_info?: number
+  today_finance_info?: number
   today_terms?: number
   today_quiz_score?: number
   today_quiz_correct?: number
   today_quiz_total?: number
   total_terms_learned?: number
   total_terms_available?: number
+  total_finance_info_available?: number
+  // Backward compatibility
+  today_ai_info?: number
   total_ai_info_available?: number
   cumulative_quiz_score?: number
   total_quiz_correct?: number
