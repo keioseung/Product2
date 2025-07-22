@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { FaChartLine, FaStar, FaUser, FaLock, FaEnvelope, FaEye, FaEyeSlash, FaShieldAlt, FaCoins, FaChartBar } from 'react-icons/fa'
+import { authAPI } from '@/lib/api'
 
 export default function AuthPage() {
   const router = useRouter()
@@ -29,22 +30,18 @@ export default function AuthPage() {
     setError('')
     
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: formData.username, password: formData.password })
+      const result = await authAPI.login({ 
+        username: formData.username, 
+        password: formData.password 
       })
       
-      const data = await response.json()
-      
-      if (response.ok) {
-        localStorage.setItem('currentUser', JSON.stringify(data.user))
-        router.push(data.user.role === 'admin' ? '/admin' : '/dashboard')
+      router.push(result.user.role === 'admin' ? '/admin' : '/dashboard')
+    } catch (error: any) {
+      if (error.response?.data?.detail) {
+        setError(error.response.data.detail)
       } else {
-        setError(data.detail || '로그인에 실패했습니다.')
+        setError('로그인에 실패했습니다.')
       }
-    } catch (error) {
-      setError('네트워크 오류가 발생했습니다.')
     }
     
     setIsLoading(false)
@@ -56,22 +53,20 @@ export default function AuthPage() {
     setError('')
     
     try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+      const result = await authAPI.register({
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        role: 'user'
       })
       
-      const data = await response.json()
-      
-      if (response.ok) {
-        localStorage.setItem('currentUser', JSON.stringify(data.user))
-        router.push('/dashboard')
+      router.push('/dashboard')
+    } catch (error: any) {
+      if (error.response?.data?.detail) {
+        setError(error.response.data.detail)
       } else {
-        setError(data.detail || '회원가입에 실패했습니다.')
+        setError('회원가입에 실패했습니다.')
       }
-    } catch (error) {
-      setError('네트워크 오류가 발생했습니다.')
     }
     
     setIsLoading(false)
